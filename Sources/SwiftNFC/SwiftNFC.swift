@@ -4,12 +4,12 @@ import CoreNFC
 @available(iOS 15.0, *)
 public class NFCReader: NSObject, ObservableObject, NFCNDEFReaderSessionDelegate {
 
-    public var startAlert = String(localized: "Hold your iPhone near the tag.", bundle: .module)
-    public var endAlert = ""
-    public var msg = String(localized: "Scan to read or Edit here to write...", bundle: .module)
-    public var raw = String(localized: "Raw Data available after scan.", bundle: .module)
+    @Published public var startAlert = String(localized: "Hold your iPhone near the tag.", bundle: .module)
+    @Published public var endAlert = ""
+    @Published public var msg = String(localized: "Scan to read or Edit here to write...", bundle: .module)
+    @Published public var raw = String(localized: "Raw Data available after scan.", bundle: .module)
 
-    public var session: NFCNDEFReaderSession?
+    @Published public var session: NFCNDEFReaderSession?
     
     public func read() {
         guard NFCNDEFReaderSession.readingAvailable else {
@@ -50,13 +50,12 @@ public class NFCReader: NSObject, ObservableObject, NFCNDEFReaderSessionDelegate
 }
 
 public class NFCWriter: NSObject, ObservableObject, NFCNDEFReaderSessionDelegate {
+    @Published public var startAlert = String(localized: "Hold your iPhone near the tag.", bundle: .module)
+    @Published public var endAlert = ""
+    @Published public var msg = ""
+    @Published public var type = "T"
     
-    public var startAlert = String(localized: "Hold your iPhone near the tag.", bundle: .module)
-    public var endAlert = ""
-    public var msg = ""
-    public var type = "T"
-    
-    public var session: NFCNDEFReaderSession?
+    @Published public var session: NFCNDEFReaderSession?
     
     public func write() {
         guard NFCNDEFReaderSession.readingAvailable else {
