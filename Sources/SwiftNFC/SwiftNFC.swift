@@ -9,7 +9,7 @@ public class NFCReader: NSObject, ObservableObject, NFCNDEFReaderSessionDelegate
     @Published public var msg = String(localized: "Scan to read or Edit here to write...", bundle: .module)
     @Published public var raw = String(localized: "Raw Data available after scan.", bundle: .module)
 
-    @Published public var session: NFCNDEFReaderSession?
+    public var session: NFCNDEFReaderSession?
     
     public func read() {
         guard NFCNDEFReaderSession.readingAvailable else {
@@ -54,8 +54,8 @@ public class NFCWriter: NSObject, ObservableObject, NFCNDEFReaderSessionDelegate
     @Published public var endAlert = ""
     @Published public var msg = ""
     @Published public var type = "T"
-    
-    @Published public var session: NFCNDEFReaderSession?
+
+    public var session: NFCNDEFReaderSession?
     
     public func write() {
         guard NFCNDEFReaderSession.readingAvailable else {
